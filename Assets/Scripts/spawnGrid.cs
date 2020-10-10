@@ -7,7 +7,6 @@ public class spawnGrid : MonoBehaviour
     public GameObject tile;
     public int xSize, zSize;
     public float spacing;
-    public GameObject furniture;
     private void Start()
     {
         StartCoroutine(SpawnGrid());
