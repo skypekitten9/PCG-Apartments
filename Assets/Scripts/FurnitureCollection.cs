@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class furnitureData : MonoBehaviour
+public class FurnitureCollection : MonoBehaviour
 {
-    public string hexValue;
+    public GameObject[] furnitures;
 }
