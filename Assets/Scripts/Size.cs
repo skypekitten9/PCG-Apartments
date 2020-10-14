@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FurnitureCollection : MonoBehaviour
+public class Size : MonoBehaviour
 {
-    public GameObject[] furnitures;
+    public int height;
+    public int width;
 }

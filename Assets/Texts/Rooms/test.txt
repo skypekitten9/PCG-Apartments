@@ -1,0 +1,5 @@
+LivingRoomFurniture 4 4;
+N1 E3 N2 00;
+00 E3 X2 00;
+00 00 00 00;
+00 00 00 00;
