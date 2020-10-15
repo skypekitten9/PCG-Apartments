@@ -6,8 +6,11 @@ using UnityEngine;
 
 public class spawnGrid : MonoBehaviour
 {
+    
+    public bool generateTiles;
+    public bool delay;
+    public float secondsToDelay;
     public GameObject[] furnitureArray;
-    public GameObject tile;
 
     int[,] indexArray;
     Direction[,] directionArray;
@@ -33,7 +36,7 @@ public class spawnGrid : MonoBehaviour
 
     void ReadFile()
     {
-        string testRoom = "LivingRoomFurniture 4 4;N0 E0 S0 W0;00 00 00 00;00 00 00 00;00 00 00 00;";
+        string testRoom = "LivingRoomFurniture 4 4;N1 00 00 00;E2 00 00 W0;X2 00 00 00;00 00 00 N1;";
         string[] rows = testRoom.Split(';');
         string[] tiles = rows[0].Split(' ');
         sizeX = int.Parse(tiles[1]);
@@ -69,12 +72,12 @@ public class spawnGrid : MonoBehaviour
             for (int z = 0; z < sizeZ; z++)
             {
                 Vector3 pos = new Vector3(x * spacing, 0, z * spacing);
-                SpawnTile(pos);
-                if(directionArray[x,z] != Direction.Empty && directionArray[x,z] != Direction.Ocupied) SpawnObj(pos, directionArray[x, z], indexArray[x, z]);
-                yield return new WaitForSeconds(0.1f);
+                if(generateTiles) SpawnTile(pos);
+                if (directionArray[x,z] != Direction.Empty && directionArray[x,z] != Direction.Ocupied) SpawnObj(pos, directionArray[x, z], indexArray[x, z]);
+                if(delay) yield return new WaitForSeconds(secondsToDelay);
             }
         }
-        
+        yield return new WaitForSeconds(0.0f);
     }
 
     void SpawnObj(Vector3 spawnPosition, Direction direction, int index)
@@ -99,7 +102,9 @@ public class spawnGrid : MonoBehaviour
 
     void SpawnTile(Vector3 spawnPosition)
     {
-        GameObject obj = Instantiate(tile, spawnPosition, Quaternion.identity);
-        obj.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        tile.transform.position = spawnPosition;
+        tile.transform.localScale = new Vector3(1, 0.2f, 1);
+        tile.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
     }
 }
