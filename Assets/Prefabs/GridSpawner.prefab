@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   furnitureArray:
-  - {fileID: 2921799941101566772, guid: 4557dec0253e4de44bd5d98cfe48f688, type: 3}
-  - {fileID: 6540134829788094962, guid: 4377bdf8ee6af2b4fac11407dcba3959, type: 3}
-  - {fileID: 6487912043787558942, guid: 76b99e102a55e5a4b9be88d1133f6733, type: 3}
-  allowedFurniture: 0000000001000000
-  sizeX: 10
-  sizeZ: 10
+  - {fileID: 6504969100230249315, guid: 4557dec0253e4de44bd5d98cfe48f688, type: 3}
+  - {fileID: 5409502271011724703, guid: 4377bdf8ee6af2b4fac11407dcba3959, type: 3}
+  - {fileID: 5452224963926424807, guid: 1279cadd78fe50a4eb05e92ea76e29f4, type: 3}
   tile: {fileID: 293201531431414753, guid: 976bb0479c79d87448d0d595defbc278, type: 3}
