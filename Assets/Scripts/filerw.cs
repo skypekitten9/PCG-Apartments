@@ -5,9 +5,9 @@ using System.IO;
 
 public static class filerw
 {
-    public static StreamReader reader;
-    public static StreamWriter writer;
-    public static string content;
+    static StreamReader reader;
+    static StreamWriter writer;
+    static string content;
     public static string FileToString(string path)
     {
         reader = new StreamReader(path);

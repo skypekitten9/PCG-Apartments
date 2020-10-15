@@ -36,8 +36,13 @@ public class spawnGrid : MonoBehaviour
 
     void ReadFile()
     {
-        string testRoom = "LivingRoomFurniture 4 4;N1 00 00 00;E2 00 00 W0;X2 00 00 00;00 00 00 N1;";
-        string[] rows = testRoom.Split(';');
+        string path = "Assets/Texts/Rooms/test.txt";
+
+        string content = filerw.FileToString(path);
+        Debug.Log(content);
+
+        //string testRoom = "LivingRoomFurniture 4 4;N1 00 00 00;E2 00 00 W0;X2 00 00 00;00 00 00 N1;";
+        string[] rows = content.Split(';');
         string[] tiles = rows[0].Split(' ');
         sizeX = int.Parse(tiles[1]);
         sizeZ = int.Parse(tiles[2]);
