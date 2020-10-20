@@ -30,18 +30,15 @@ public class spawnGrid : MonoBehaviour
 
     private void Start()
     {
-        ReadFile();
+        ReadFile("Assets/Texts/Rooms/test.txt");
         StartCoroutine(SpawnGrid());
     }
 
-    void ReadFile()
+    void ReadFile(string path)
     {
-        string path = "Assets/Texts/Rooms/test.txt";
-
         string content = filerw.FileToString(path);
         Debug.Log(content);
 
-        //string testRoom = "LivingRoomFurniture 4 4;N1 00 00 00;E2 00 00 W0;X2 00 00 00;00 00 00 N1;";
         string[] rows = content.Split(';');
         string[] tiles = rows[0].Split(' ');
         sizeX = int.Parse(tiles[1]);
@@ -53,10 +50,10 @@ public class spawnGrid : MonoBehaviour
 
         for (int x = 0; x < sizeX; x++)
         {
-            tiles = rows[x+1].Split(' ');
+            tiles = rows[x + 1].Split(' ');
             for (int z = 0; z < sizeZ; z++)
             {
-                Debug.Log(tiles[z]);
+                tiles[z] = tiles[z].Trim();
                 if (tiles[z][0] == '0') directionArray[x, z] = Direction.Empty;
                 else if (tiles[z][0] == 'X') directionArray[x, z] = Direction.Ocupied;
                 else if (tiles[z][0] == 'N') directionArray[x, z] = Direction.North;
@@ -64,7 +61,7 @@ public class spawnGrid : MonoBehaviour
                 else if (tiles[z][0] == 'E') directionArray[x, z] = Direction.East;
                 else if (tiles[z][0] == 'W') directionArray[x, z] = Direction.West;
                 tiles[z] = tiles[z].Substring(1);
-                
+
                 indexArray[x, z] = int.Parse(tiles[z]);
             }
         }
