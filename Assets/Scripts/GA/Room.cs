@@ -6,11 +6,14 @@ using UnityEditor.Experimental.GraphView;
 public class Room
 {
     public string[] furniture { get; private set; }
+    int width, height;
     Random rand;
-    public Room(int size)
+    public Room(int size, int width, int height)
     {
         furniture = new string[size];
         rand = new Random();
+        this.width = width;
+        this.height = height;
     }
 
     public float CalculateFitness(int index)
@@ -51,7 +54,7 @@ public class Room
 
     public Room CrossOver(Room parent)
     {
-        Room child = new Room(furniture.Length);
+        Room child = new Room(furniture.Length, width, height);
         for (int i = 0; i < furniture.Length; i++)
         {
             if (i < furniture.Length/2)
