@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 
 public class Room
 {
@@ -12,14 +13,40 @@ public class Room
         rand = new Random();
     }
 
-    public float CalculateFitness()
+    public float CalculateFitness(int index)
     {
         return 0f;
     }
 
     public void GenerateRoom(int[] allowedFurniture)
     {
-
+        for (int i = 0; i < furniture.Length; i++)
+        {
+            switch (rand.Next(6))
+            {
+                case 0:
+                    furniture[i] = "N";
+                    break;
+                case 1:
+                    furniture[i] = "E";
+                    break;
+                case 2:
+                    furniture[i] = "S";
+                    break;
+                case 3:
+                    furniture[i] = "W";
+                    break;
+                case 4:
+                    furniture[i] = "0";
+                    break;
+                case 5:
+                    furniture[i] = "X";
+                    break;
+                default:
+                    break;
+            }
+            furniture[i] += allowedFurniture[rand.Next(allowedFurniture.Length)];
+        }
     }
 
     public Room CrossOver(Room parent)
