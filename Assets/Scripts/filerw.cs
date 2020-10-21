@@ -16,11 +16,15 @@ public static class filerw
         return content;
     }
 
-    public static void WriteToFile(string towrite)
+    public static void WriteToFile(string toWrite, string path)
     {
-        string path = "Assets/Resources/newtest.txt";
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.Write(towrite);
-        writer.Close();
+        if (!File.Exists(path))
+        {
+            // Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(toWrite);
+            }
+        }
     }
 }
