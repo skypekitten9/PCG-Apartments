@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class Room
 {
     public string[] furniture { get; private set; }
     int width, height;
-    Random rand;
+    public GameObject gridSpawner;
     public Room(int size, int width, int height)
     {
         furniture = new string[size];
-        rand = new Random();
         this.width = width;
         this.height = height;
     }
@@ -25,7 +25,7 @@ public class Room
     {
         for (int i = 0; i < furniture.Length; i++)
         {
-            switch (rand.Next(6))
+            switch (UnityEngine.Random.Range(0,6))
             {
                 case 0:
                     furniture[i] = "N";
@@ -48,7 +48,7 @@ public class Room
                 default:
                     break;
             }
-            furniture[i] += allowedFurniture[rand.Next(allowedFurniture.Length)];
+            furniture[i] += allowedFurniture[UnityEngine.Random.Range(0, allowedFurniture.Length)];
         }
     }
 
@@ -67,6 +67,11 @@ public class Room
             }
         }
         return child;
+    }
+
+    public void GenerateRoom()
+    {
+
     }
 
     
