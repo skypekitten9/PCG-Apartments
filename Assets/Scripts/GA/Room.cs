@@ -8,10 +8,9 @@ public class Room
 {
     public string[] furniture { get; private set; }
     int width, height;
-    public GameObject gridSpawner;
-    public Room(int size, int width, int height)
+    public Room(int width, int height)
     {
-        furniture = new string[size];
+        furniture = new string[width * height];
         this.width = width;
         this.height = height;
     }
@@ -23,6 +22,7 @@ public class Room
 
     public void GenerateRoom(int[] allowedFurniture)
     {
+        UnityEngine.Random.seed = (int)UnityEngine.Random.value;
         for (int i = 0; i < furniture.Length; i++)
         {
             switch (UnityEngine.Random.Range(0,6))
@@ -54,7 +54,7 @@ public class Room
 
     public Room CrossOver(Room parent)
     {
-        Room child = new Room(furniture.Length, width, height);
+        Room child = new Room(width, height);
         for (int i = 0; i < furniture.Length; i++)
         {
             if (i < furniture.Length/2)
@@ -69,10 +69,18 @@ public class Room
         return child;
     }
 
-    public void GenerateRoom()
+    public string GetRoomString()
     {
-
+        string result = "RoomName " + height + " " + width + ";\n";
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (j != 0) result += " ";
+                result += furniture[i + j];
+            }
+            result += ";\n";
+        }
+        return result;
     }
-
-    
 }

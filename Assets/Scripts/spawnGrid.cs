@@ -30,11 +30,11 @@ public class spawnGrid : MonoBehaviour
 
     private void Start()
     {
-        ReadFile("Assets/Texts/Rooms/test.txt");
-        StartCoroutine(SpawnGrid());
+        //ReadFile("Assets/Texts/Rooms/test.txt");
+        //StartCoroutine(SpawnGrid());
     }
 
-    void ReadFile(string path)
+    public void ReadFile(string path)
     {
         string content = filerw.FileToString(path);
         Debug.Log(content);
@@ -67,7 +67,7 @@ public class spawnGrid : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnGrid()
+    public IEnumerator SpawnGrid()
     {
         for (int x = 0; x < sizeX; x++)
         {
