@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7492191831684076248}
   - component: {fileID: 2902101686610842165}
+  - component: {fileID: 7371972699709511668}
+  - component: {fileID: -9147462051477509986}
   m_Layer: 0
   m_Name: TV-Table
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 1
   width: 2
+--- !u!65 &7371972699709511668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459464934368027501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0.5}
+--- !u!114 &-9147462051477509986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459464934368027501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3861777932592690535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +128,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: table-television
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3787679972860662596, guid: 55cb713f8777ffd4a9cce8ecd226ba88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 55cb713f8777ffd4a9cce8ecd226ba88, type: 3}
 --- !u!4 &143859904298751087 stripped
 Transform:
@@ -163,5 +191,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: television
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 596393368027010015, guid: b172f7fc8df5bd34288fa9956d54c6b2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b172f7fc8df5bd34288fa9956d54c6b2, type: 3}

@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8718334235054172846}
   - component: {fileID: 4864417733123368164}
+  - component: {fileID: 8989858839487815611}
+  - component: {fileID: -8576780003026961984}
   m_Layer: 0
   m_Name: SinkBathroom
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 1
   width: 1
+--- !u!65 &8989858839487815611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604045090962281567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.96928346, y: 1.2257915, z: 0.9648957}
+  m_Center: {x: -0.3356859, y: 0.38710427, z: -0.42564082}
+--- !u!114 &-8576780003026961984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604045090962281567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2759035503512293434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +128,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6062319299469638372, guid: 9d66109edb6de0442842a9b81aa09027, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9d66109edb6de0442842a9b81aa09027, type: 3}
 --- !u!4 &8251610417967926924 stripped
 Transform:

@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5352672274755238876}
   - component: {fileID: 6809109338758213934}
+  - component: {fileID: 1349224807972235197}
+  - component: {fileID: 7368045717547489668}
   m_Layer: 0
   m_Name: TableWhite
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 1
   width: 2
+--- !u!65 &1349224807972235197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5272894430771019090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0.5}
+--- !u!114 &7368045717547489668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5272894430771019090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7354961197016754821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,7 +136,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: table-dining
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5977485185300325744, guid: 2c9c11a24562d204cbe6d104cbd66415, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2c9c11a24562d204cbe6d104cbd66415, type: 3}
 --- !u!4 &3751955862560177781 stripped
 Transform:

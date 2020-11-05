@@ -100,6 +100,12 @@ public class spawnGrid : MonoBehaviour
                 break;
         }
         GameObject obj = Instantiate(furnitureArray[index], spawnPosition, Quaternion.Euler(rotation));
+
+    }
+
+    private void SolveCollision()
+    {
+        
     }
 
     void SpawnTile(Vector3 spawnPosition)

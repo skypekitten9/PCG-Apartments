@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5797007937165945376}
   - component: {fileID: 208288086834131100}
+  - component: {fileID: 5375034621402131657}
+  - component: {fileID: -7625655027047955587}
   m_Layer: 0
   m_Name: ChairWhite
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 1
   width: 1
+--- !u!65 &5375034621402131657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981868917026289255}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-7625655027047955587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981868917026289255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5226559481389147347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,7 +140,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 279893758465313189, guid: b561b721a17dbc143bbe1ceb41a1f29a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b561b721a17dbc143bbe1ceb41a1f29a, type: 3}
 --- !u!4 &5440484034455838556 stripped
 Transform:

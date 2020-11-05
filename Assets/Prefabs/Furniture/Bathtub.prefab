@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 559572833582143485}
   - component: {fileID: 2613683075233144223}
+  - component: {fileID: 1009316832562192005}
+  - component: {fileID: 4101654992492046839}
   m_Layer: 0
   m_Name: Bathtub
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 1
   width: 2
+--- !u!65 &1009316832562192005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285128968308003955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0.5}
+--- !u!114 &4101654992492046839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285128968308003955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7549079549458204698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,6 +80,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 559572833582143485}
     m_Modifications:
+    - target: {fileID: 163159320198323565, guid: e40f1002074e9ee4dbb7b38690e6f92e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 189238309797799191, guid: e40f1002074e9ee4dbb7b38690e6f92e, type: 3}
       propertyPath: m_Name
       value: bath
@@ -113,7 +144,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1125
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 163159320198323565, guid: e40f1002074e9ee4dbb7b38690e6f92e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e40f1002074e9ee4dbb7b38690e6f92e, type: 3}
 --- !u!4 &7671435290131980825 stripped
 Transform:
