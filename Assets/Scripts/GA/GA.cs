@@ -24,10 +24,10 @@ public class GA : MonoBehaviour
             population.Add(room);
             
         }
-        GenerateRooms();
+        SpawnRooms();
     }
 
-    private void GenerateRooms()
+    private void SpawnRooms()
     {
         string toPrint = population[0].GetRoomString();
         filerw.WriteToFile(toPrint, "Assets/Texts/Rooms/test.txt");

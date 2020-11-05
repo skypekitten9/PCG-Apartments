@@ -22,7 +22,6 @@ public class Room
 
     public void GenerateRoom(int[] allowedFurniture)
     {
-        UnityEngine.Random.seed = (int)UnityEngine.Random.value;
         for (int i = 0; i < furniture.Length; i++)
         {
             switch (UnityEngine.Random.Range(0,6))
@@ -72,12 +71,14 @@ public class Room
     public string GetRoomString()
     {
         string result = "RoomName " + height + " " + width + ";\n";
+        int index = 0;
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
                 if (j != 0) result += " ";
-                result += furniture[i + j];
+                result += furniture[index];
+                index++;
             }
             result += ";\n";
         }
