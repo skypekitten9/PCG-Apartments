@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8070269158684845730}
   - component: {fileID: 8445513683765147822}
   - component: {fileID: 2460120485582911459}
-  - component: {fileID: -246353326969281523}
   m_Layer: 0
   m_Name: Lamp
   m_TagString: Furniture
@@ -61,18 +60,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &-246353326969281523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5409502271011724703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2664464614397146729
 PrefabInstance:
   m_ObjectHideFlags: 0
