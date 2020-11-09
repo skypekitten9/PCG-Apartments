@@ -45,8 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateTiles: 1
   delay: 1
-  secondsToDelay: 0.1
-  roomName: LivingRoom
+  secondsToDelay: 0.01
   furnitureArray:
   - {fileID: 4459464934368027501, guid: 372586b89e464024f9fe314051b17c80, type: 3}
   - {fileID: 5272894430771019090, guid: df3514e185d304e4cb460f5f59e47226, type: 3}

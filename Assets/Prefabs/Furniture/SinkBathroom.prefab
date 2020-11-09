@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8718334235054172846}
   - component: {fileID: 848371802245848128}
+  - component: {fileID: -1798967514940768540}
   m_Layer: 0
   m_Name: SinkBathroom
   m_TagString: Furniture
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-1798967514940768540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604045090962281567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
 --- !u!1001 &2759035503512293434
 PrefabInstance:
   m_ObjectHideFlags: 0

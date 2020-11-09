@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7034119745563210391}
   - component: {fileID: 1375258280519411159}
+  - component: {fileID: 6030647922488954546}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Furniture
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6030647922488954546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2259269312732785355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2abffe616b214c8c38cce88ae2aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
 --- !u!1001 &7109176422707210590
 PrefabInstance:
   m_ObjectHideFlags: 0
