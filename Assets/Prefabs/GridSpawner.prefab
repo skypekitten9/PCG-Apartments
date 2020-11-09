@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateTiles: 1
-  delay: 0
+  delay: 1
   secondsToDelay: 0.1
   furnitureArray:
   - {fileID: 8285128968308003955, guid: a8a83981c5488ae4498f064da40fe2af, type: 3}

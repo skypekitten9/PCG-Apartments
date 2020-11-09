@@ -16,9 +16,9 @@ public class Furniture : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Trigger!");
-        if (other.tag == "Furniture") Destroy(other);
+        if (collision.transform.tag == "Furniture") Destroy(collision.gameObject);
     }
 }

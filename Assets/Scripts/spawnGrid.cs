@@ -80,6 +80,7 @@ public class spawnGrid : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(0.0f);
+        yield return new WaitForEndOfFrame();
     }
 
     void SpawnObj(Vector3 spawnPosition, Direction direction, int index)
