@@ -104,11 +104,6 @@ public class spawnGrid : MonoBehaviour
 
     }
 
-    private void SolveCollision()
-    {
-        
-    }
-
     void SpawnTile(Vector3 spawnPosition)
     {
         GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 843149425485887}
   - component: {fileID: 843149425485884}
   m_Layer: 0
-  m_Name: GridSpawner
+  m_Name: LivingRoomSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,17 +46,12 @@ MonoBehaviour:
   generateTiles: 1
   delay: 1
   secondsToDelay: 0.1
+  roomName: LivingRoom
   furnitureArray:
-  - {fileID: 8285128968308003955, guid: a8a83981c5488ae4498f064da40fe2af, type: 3}
-  - {fileID: 6504969100230249315, guid: 4557dec0253e4de44bd5d98cfe48f688, type: 3}
-  - {fileID: 6981868917026289255, guid: 2ac9f798a66e4a9439c5b0babb9a06a9, type: 3}
-  - {fileID: 5409502271011724703, guid: 4377bdf8ee6af2b4fac11407dcba3959, type: 3}
-  - {fileID: 2259269312732785355, guid: d6ed452cdabd25c4695aa7d3d564c2d2, type: 3}
-  - {fileID: 8604045090962281567, guid: f9b93e93386a354489b4ca1a06093dec, type: 3}
-  - {fileID: 5452224963926424807, guid: 1279cadd78fe50a4eb05e92ea76e29f4, type: 3}
-  - {fileID: 3457572522654534585, guid: 026ba6b513404d248ae71a86e8f9b2ca, type: 3}
-  - {fileID: 5272894430771019090, guid: df3514e185d304e4cb460f5f59e47226, type: 3}
-  - {fileID: 7177786182055175518, guid: e7427fd23c595104b9a402fe9ef9ba51, type: 3}
   - {fileID: 4459464934368027501, guid: 372586b89e464024f9fe314051b17c80, type: 3}
-  - {fileID: 8756821353130026910, guid: 14265e6e97f46724188fef61bd10f5c9, type: 3}
-  - {fileID: 6560102990345805370, guid: 0fde722773c6b0649a07c2df9601087d, type: 3}
+  - {fileID: 5272894430771019090, guid: df3514e185d304e4cb460f5f59e47226, type: 3}
+  - {fileID: 3457572522654534585, guid: 026ba6b513404d248ae71a86e8f9b2ca, type: 3}
+  - {fileID: 5452224963926424807, guid: 1279cadd78fe50a4eb05e92ea76e29f4, type: 3}
+  - {fileID: 5409502271011724703, guid: 4377bdf8ee6af2b4fac11407dcba3959, type: 3}
+  - {fileID: 6981868917026289255, guid: 2ac9f798a66e4a9439c5b0babb9a06a9, type: 3}
+  - {fileID: 6504969100230249315, guid: 4557dec0253e4de44bd5d98cfe48f688, type: 3}

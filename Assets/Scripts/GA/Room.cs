@@ -7,12 +7,15 @@ using UnityEngine;
 public class Room
 {
     public string[] furniture { get; private set; }
+    public Vector2[] furnitureSize { get; private set; }
     int width, height;
-    public Room(int width, int height)
+    GameObject gridSpawner;
+    public Room(int width, int height, GameObject gridSpawner)
     {
         furniture = new string[width * height];
         this.width = width;
         this.height = height;
+        this.gridSpawner = gridSpawner;
     }
 
     public float CalculateFitness(int index)
@@ -20,7 +23,7 @@ public class Room
         return 0f;
     }
 
-    public void GenerateRoom(int[] allowedFurniture)
+    public void GenerateRoom()
     {
         for (int i = 0; i < furniture.Length; i++)
         {
@@ -47,13 +50,21 @@ public class Room
                 default:
                     break;
             }
-            furniture[i] += allowedFurniture[UnityEngine.Random.Range(0, allowedFurniture.Length)];
+            furniture[i] += UnityEngine.Random.Range(0, gridSpawner.GetComponent<spawnGrid>().furnitureArray.Length);
+        }
+    }
+
+    public void FixCollisions()
+    {
+        for (int i = 0; i < furniture.Length; i++)
+        {
+           
         }
     }
 
     public Room CrossOver(Room parent)
     {
-        Room child = new Room(width, height);
+        Room child = new Room(width, height, gridSpawner);
         for (int i = 0; i < furniture.Length; i++)
         {
             if (i < furniture.Length/2)
@@ -70,7 +81,7 @@ public class Room
 
     public string GetRoomString()
     {
-        string result = "RoomName " + height + " " + width + ";\n";
+        string result = gridSpawner.name + " " + height + " " + width + ";\n";
         int index = 0;
         for (int i = 0; i < height; i++)
         {

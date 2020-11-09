@@ -10,7 +10,6 @@ public class GA : MonoBehaviour
     int generation;
 
     public int populationSize, generationsAmount, roomWidth, roomHeight;
-    public int[] allowedFurniture;
 
     private void Start()
     {
@@ -19,8 +18,8 @@ public class GA : MonoBehaviour
         GameObject.Instantiate(gridSpawner);
         for (int i = 0; i < populationSize; i++)
         {
-            Room room = new Room(roomWidth, roomHeight);
-            room.GenerateRoom(allowedFurniture);
+            Room room = new Room(roomWidth, roomHeight, gridSpawner);
+            room.GenerateRoom();
             population.Add(room);
             
         }
