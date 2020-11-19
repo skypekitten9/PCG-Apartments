@@ -31,16 +31,16 @@ public class Room
                 switch (UnityEngine.Random.Range(0, 6))
                 {
                     case 0:
-                        furniture[i, j] = "N";
+                        furniture[i, j] = "S";
                         break;
                     case 1:
-                        furniture[i, j] = "N";
+                        furniture[i, j] = "S";
                         break;
                     case 2:
-                        furniture[i, j] = "N";
+                        furniture[i, j] = "S";
                         break;
                     case 3:
-                        furniture[i, j] = "N";
+                        furniture[i, j] = "S";
                         break;
                     case 4:
                         furniture[i, j] = "0";
@@ -75,42 +75,13 @@ public class Room
     {
         int furnitureHeight = gridSpawner.GetComponent<spawnGrid>().furnitureArray[furnitureIndex].GetComponent<Furniture>().height;
         int furnitureWidth = gridSpawner.GetComponent<spawnGrid>().furnitureArray[furnitureIndex].GetComponent<Furniture>().width;
+        //North
         if (furniture[i, j].Substring(0, 1) == "N")
         {
+            Debug.Log("Solving north!" + i + " " + j);
             if (i + furnitureHeight >= height || j + furnitureWidth >= width)
             {
-                furniture[i, j] = "00";
-                return;
-            }
-
-            for (int m = 1; m == furnitureHeight; m++)
-            {
-                for (int n = 1; n == furnitureWidth; n++)
-                {
-                    furniture[i + m, j + n] = "X" + furnitureIndex;
-                }
-            }
-        }
-        else if (furniture[i, j].Substring(0, 1) == "E")
-        {
-            if (i + furnitureWidth > height || j + furnitureHeight > width)
-            {
-                furniture[i, j] = "00";
-                return;
-            }
-
-            for (int m = 0; m < furnitureWidth; m++)
-            {
-                for (int n = 0; n < furnitureHeight; n++)
-                {
-                    furniture[i + m, j + n] = "00";
-                }
-            }
-        }
-        else if (furniture[i, j].Substring(0, 1) == "S")
-        {
-            if (i - furnitureHeight < 0 || j - furnitureWidth < 0)
-            {
+                Debug.Log("Out of bounds");
                 furniture[i, j] = "00";
                 return;
             }
@@ -119,14 +90,21 @@ public class Room
             {
                 for (int n = 0; n < furnitureWidth; n++)
                 {
-                    furniture[i - m, j - n] = "00";
+                    if (m == 0) continue;
+                    Debug.Log("Removed: "  + (i + m) + " " + (j + n));
+                    furniture[i + m, j + n] = "X" + furnitureIndex;
                 }
             }
         }
-        else if (furniture[i, j].Substring(0, 1) == "W")
+
+        //East
+        if (furniture[i, j].Substring(0, 1) == "E")
         {
-            if (i - furnitureWidth < 0 || j - furnitureHeight < 0)
+            Debug.Log("Solving East!" + i + " " + j);
+
+            if (i + furnitureWidth >= height || j + furnitureHeight >= width)
             {
+                Debug.Log("Out of bounds");
                 furniture[i, j] = "00";
                 return;
             }
@@ -135,13 +113,86 @@ public class Room
             {
                 for (int n = 0; n < furnitureHeight; n++)
                 {
-                    furniture[i - m, j - n] = "00";
+                    if (m == 0) continue;
+                    Debug.Log("Removed: " + (i + m) + " " + (j + n));
+                    furniture[i + m, j + n] = "X" + furnitureIndex;
                 }
             }
         }
-        else return;
 
-        
+        //South
+        if (furniture[i, j].Substring(0, 1) == "S")
+        {
+            Debug.Log("Solving south!" + i + " " + j);
+            if (i - furnitureHeight + 1 < 0 || j - furnitureWidth + 1 < 0)
+            {
+                Debug.Log("Out of bounds");
+                furniture[i, j] = "00";
+                return;
+            }
+
+            for (int m = 0; m < furnitureHeight; m++)
+            {
+                for (int n = 0; n < furnitureWidth; n++)
+                {
+                    if (m == 0) continue;
+                    Debug.Log("Removed: " + (i - m) + " " + (j - n));
+                    furniture[i - m, j - n] = "X" + furnitureIndex;
+                }
+            }
+        }
+
+        //else if (furniture[i, j].Substring(0, 1) == "E")
+        //{
+        //    if (i + furnitureWidth > height || j + furnitureHeight > width)
+        //    {
+        //        furniture[i, j] = "00";
+        //        return;
+        //    }
+
+        //    for (int m = 0; m < furnitureWidth; m++)
+        //    {
+        //        for (int n = 0; n < furnitureHeight; n++)
+        //        {
+        //            furniture[i + m, j + n] = "00";
+        //        }
+        //    }
+        //}
+        //else if (furniture[i, j].Substring(0, 1) == "S")
+        //{
+        //    if (i - furnitureHeight < 0 || j - furnitureWidth < 0)
+        //    {
+        //        furniture[i, j] = "00";
+        //        return;
+        //    }
+
+        //    for (int m = 0; m < furnitureHeight; m++)
+        //    {
+        //        for (int n = 0; n < furnitureWidth; n++)
+        //        {
+        //            furniture[i - m, j - n] = "00";
+        //        }
+        //    }
+        //}
+        //else if (furniture[i, j].Substring(0, 1) == "W")
+        //{
+        //    if (i - furnitureWidth < 0 || j - furnitureHeight < 0)
+        //    {
+        //        furniture[i, j] = "00";
+        //        return;
+        //    }
+
+        //    for (int m = 0; m < furnitureWidth; m++)
+        //    {
+        //        for (int n = 0; n < furnitureHeight; n++)
+        //        {
+        //            furniture[i - m, j - n] = "00";
+        //        }
+        //    }
+        //}
+        //else return;
+
+
     }
 
     bool IsFurnitureMultipleTiles(int furnitureIndex)
