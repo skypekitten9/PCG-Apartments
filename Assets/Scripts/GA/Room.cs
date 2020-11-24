@@ -9,6 +9,8 @@ public class Room
     public string[,] furniture { get; private set; }
     int width, height;
     GameObject gridSpawner;
+    int sofaCount, lampCount, tableCount;
+    public float score;
     public Room(int width, int height, GameObject gridSpawner)
     {
         furniture = new string[height , width];
@@ -17,9 +19,46 @@ public class Room
         this.gridSpawner = gridSpawner;
     }
 
-    public float CalculateFitness(int index)
+    public void CountFurniture()
     {
-        return 0f;
+        foreach (string f in furniture)
+        {
+            if (Int32.Parse(f.Substring(1)) == 1)
+            {
+                tableCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 2)
+            {
+                tableCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 3)
+            {
+                sofaCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 4)
+            {
+                lampCount++;
+            }
+        }
+
+    }
+
+    public float CalculateFitness()
+    {
+        score = 1f;
+        CountFurniture();
+
+        if (sofaCount > 1)
+        {
+            score -= 0.1f;
+        }
+
+        Debug.Log(score);
+
+        return score;
     }
 
     public void GenerateRoom()

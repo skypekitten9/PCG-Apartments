@@ -24,6 +24,12 @@ public class GA : MonoBehaviour
             
         }
         SpawnRooms();
+        foreach (Room p in population)
+        {
+            p.CalculateFitness();
+            Debug.Log(p.score);
+        }
+
     }
 
     private void SpawnRooms()
