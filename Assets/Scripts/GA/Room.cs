@@ -31,16 +31,16 @@ public class Room
                 switch (UnityEngine.Random.Range(0, 6))
                 {
                     case 0:
-                        furniture[i, j] = "S";
+                        furniture[i, j] = "N";
                         break;
                     case 1:
-                        furniture[i, j] = "S";
+                        furniture[i, j] = "E";
                         break;
                     case 2:
                         furniture[i, j] = "S";
                         break;
                     case 3:
-                        furniture[i, j] = "S";
+                        furniture[i, j] = "W";
                         break;
                     case 4:
                         furniture[i, j] = "0";
@@ -79,7 +79,7 @@ public class Room
         if (furniture[i, j].Substring(0, 1) == "N")
         {
             Debug.Log("Solving north!" + i + " " + j);
-            if (i + furnitureHeight >= height || j + furnitureWidth >= width)
+            if (i + furnitureHeight > height || j + furnitureWidth > width)
             {
                 Debug.Log("Out of bounds");
                 furniture[i, j] = "00";
@@ -90,7 +90,12 @@ public class Room
             {
                 for (int n = 0; n < furnitureWidth; n++)
                 {
-                    if (m == 0) continue;
+                    if (m == 0 && n == 0) continue;
+                    if(furniture[i + m, j + n].Substring(0, 1) == "X")
+                    {
+                        furniture[i, j] = "00";
+                        return;
+                    }
                     Debug.Log("Removed: "  + (i + m) + " " + (j + n));
                     furniture[i + m, j + n] = "X" + furnitureIndex;
                 }
@@ -102,7 +107,7 @@ public class Room
         {
             Debug.Log("Solving East!" + i + " " + j);
 
-            if (i + furnitureWidth >= height || j + furnitureHeight >= width)
+            if (i + furnitureWidth > height || j + furnitureHeight > width)
             {
                 Debug.Log("Out of bounds");
                 furniture[i, j] = "00";
@@ -113,7 +118,12 @@ public class Room
             {
                 for (int n = 0; n < furnitureHeight; n++)
                 {
-                    if (m == 0) continue;
+                    if (m == 0 && n == 0) continue;
+                    if (furniture[i + m, j + n].Substring(0, 1) == "X")
+                    {
+                        furniture[i, j] = "00";
+                        return;
+                    }
                     Debug.Log("Removed: " + (i + m) + " " + (j + n));
                     furniture[i + m, j + n] = "X" + furnitureIndex;
                 }
@@ -135,7 +145,39 @@ public class Room
             {
                 for (int n = 0; n < furnitureWidth; n++)
                 {
-                    if (m == 0) continue;
+                    if (m == 0 && n == 0) continue;
+                    if (furniture[i - m, j - n].Substring(0, 1) == "X")
+                    {
+                        furniture[i, j] = "00";
+                        return;
+                    }
+                    Debug.Log("Removed: " + (i - m) + " " + (j - n));
+                    furniture[i - m, j - n] = "X" + furnitureIndex;
+                }
+            }
+        }
+
+        //West
+        if (furniture[i, j].Substring(0, 1) == "W")
+        {
+            Debug.Log("Solving west!" + i + " " + j);
+            if (i - furnitureWidth + 1 < 0 || j - furnitureHeight + 1 < 0)
+            {
+                Debug.Log("Out of bounds");
+                furniture[i, j] = "00";
+                return;
+            }
+
+            for (int m = 0; m < furnitureWidth; m++)
+            {
+                for (int n = 0; n < furnitureHeight; n++)
+                {
+                    if (m == 0 && n == 0) continue;
+                    if (furniture[i - m, j - n].Substring(0, 1) == "X")
+                    {
+                        furniture[i, j] = "00";
+                        return;
+                    }
                     Debug.Log("Removed: " + (i - m) + " " + (j - n));
                     furniture[i - m, j - n] = "X" + furnitureIndex;
                 }
