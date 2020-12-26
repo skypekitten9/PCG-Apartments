@@ -6,14 +6,18 @@ using UnityEngine;
 public class GA : MonoBehaviour
 {
     List<Room> population;
+    Room bestRoom;
     public GameObject gridSpawner;
     int generation;
+    float fitness, bestFitness;
 
     public int populationSize, generationsAmount, roomWidth, roomHeight;
 
     private void Start()
     {
         generation = 1;
+        fitness = 0;
+        bestFitness = 0;
         population = new List<Room>();
         Instantiate(gridSpawner, gameObject.transform.position, gameObject.transform.rotation);
         for (int i = 0; i < populationSize; i++)
@@ -24,8 +28,7 @@ public class GA : MonoBehaviour
             
         }
         SpawnRooms();
-        
-
+        CalculateFitness();
     }
 
     private void SpawnRooms()
@@ -45,8 +48,8 @@ public class GA : MonoBehaviour
 
         for (int i = 0; i < population.Count; i++)
         {
-            Room parentA = null;
-            Room parentB = null;
+            Room parentA = ChooseParent();
+            Room parentB = ChooseParent();
 
             Room child = parentA.CrossOver(parentB);
             newPopulation.Add(child);
@@ -57,10 +60,35 @@ public class GA : MonoBehaviour
 
     private void CalculateFitness()
     {
-        foreach (Room p in population)
+        float fitnessSum = 0;
+        Room best = population[0];
+        for (int i = 0; i < population.Count; i++)
         {
-            p.CalculateFitness();
-            Debug.Log(p.score);
+            population[i].CalculateFitness();
+            fitnessSum += population[i].score;
+            Debug.Log(population[i].score);
+
+            if (population[i].score > best.score)
+            {
+
+            }
         }
+        fitness = fitnessSum;
+        bestFitness = best.score;
+        bestRoom = best;
+    }
+
+    private Room ChooseParent()
+    {
+        float randomNumber = UnityEngine.Random.Range(0, 1);
+        for (int i = 0; i < population.Count; i++)
+        {
+            if (randomNumber < population[i].score)
+            {
+                return population[i];
+            }
+            randomNumber -= population[i].score;
+        }
+        return null;
     }
 }
