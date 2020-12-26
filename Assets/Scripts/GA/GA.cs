@@ -15,7 +15,7 @@ public class GA : MonoBehaviour
     {
         generation = 1;
         population = new List<Room>();
-        GameObject.Instantiate(gridSpawner);
+        Instantiate(gridSpawner, gameObject.transform.position, gameObject.transform.rotation);
         for (int i = 0; i < populationSize; i++)
         {
             Room room = new Room(roomWidth, roomHeight, gridSpawner);
@@ -24,11 +24,7 @@ public class GA : MonoBehaviour
             
         }
         SpawnRooms();
-        foreach (Room p in population)
-        {
-            p.CalculateFitness();
-            Debug.Log(p.score);
-        }
+        
 
     }
 
@@ -39,5 +35,32 @@ public class GA : MonoBehaviour
         gridSpawner.GetComponent<spawnGrid>().ReadFile("Assets/Texts/Rooms/test.txt");
         StartCoroutine(gridSpawner.GetComponent<spawnGrid>().SpawnGrid());
 
+    }
+
+    private void NewGeneration()
+    {
+        if (population.Count <= 0) return;
+        CalculateFitness();
+        List<Room> newPopulation = new List<Room>();
+
+        for (int i = 0; i < population.Count; i++)
+        {
+            Room parentA = null;
+            Room parentB = null;
+
+            Room child = parentA.CrossOver(parentB);
+            newPopulation.Add(child);
+        }
+        population = newPopulation;
+        generation++;
+    }
+
+    private void CalculateFitness()
+    {
+        foreach (Room p in population)
+        {
+            p.CalculateFitness();
+            Debug.Log(p.score);
+        }
     }
 }
