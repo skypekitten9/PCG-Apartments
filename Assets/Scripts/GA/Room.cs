@@ -9,7 +9,7 @@ public class Room
     public string[,] furniture { get; private set; }
     int width, height;
     GameObject gridSpawner;
-    int sofaCount, lampCount, tableCount;
+    int sofaCount, lampCount, tableCount, tvCount, chairCount;
     public float score;
     public Room(int width, int height, GameObject gridSpawner)
     {
@@ -23,6 +23,12 @@ public class Room
     {
         foreach (string f in furniture)
         {
+
+            if (Int32.Parse(f.Substring(1)) == 0)
+            {
+                tvCount++;
+            }
+
             if (Int32.Parse(f.Substring(1)) == 1)
             {
                 tableCount++;
@@ -42,6 +48,16 @@ public class Room
             {
                 lampCount++;
             }
+
+            if (Int32.Parse(f.Substring(1)) == 5)
+            {
+                chairCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 6)
+            {
+                chairCount++;
+            }
         }
 
     }
@@ -53,7 +69,35 @@ public class Room
 
         if (sofaCount > 1)
         {
+            score -= 0.2f;          
+        }
+
+        if (tableCount > 1)
+        {
             score -= 0.1f;
+        }
+
+        if (lampCount < 1)
+        {
+            score -= 0.1f;
+        }
+
+        if (lampCount > 3)
+        {
+            score -= 0.1f;
+        }
+
+        if (tvCount > 1)
+        {
+            score -= 0.2f;
+        }
+
+        if (tableCount > 0)
+        {
+            if (chairCount > 2)
+            {
+                score += 0.3f;
+            }
         }
 
         Debug.Log(score);
