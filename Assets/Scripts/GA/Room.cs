@@ -9,6 +9,8 @@ public class Room
     public string[,] furniture { get; private set; }
     int width, height;
     GameObject gridSpawner;
+    int sofaCount, lampCount, tableCount, tvCount, chairCount;
+    public float score;
     public Room(int width, int height, GameObject gridSpawner)
     {
         furniture = new string[height , width];
@@ -17,9 +19,90 @@ public class Room
         this.gridSpawner = gridSpawner;
     }
 
-    public float CalculateFitness(int index)
+    public void CountFurniture()
     {
-        return 0f;
+        foreach (string f in furniture)
+        {
+
+            if (Int32.Parse(f.Substring(1)) == 0)
+            {
+                tvCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 1)
+            {
+                tableCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 2)
+            {
+                tableCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 3)
+            {
+                sofaCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 4)
+            {
+                lampCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 5)
+            {
+                chairCount++;
+            }
+
+            if (Int32.Parse(f.Substring(1)) == 6)
+            {
+                chairCount++;
+            }
+        }
+
+    }
+
+    public float CalculateFitness()
+    {
+        score = 1f;
+        CountFurniture();
+
+        if (sofaCount > 1)
+        {
+            score -= 0.2f;          
+        }
+
+        if (tableCount > 1)
+        {
+            score -= 0.1f;
+        }
+
+        if (lampCount < 1)
+        {
+            score -= 0.1f;
+        }
+
+        if (lampCount > 3)
+        {
+            score -= 0.1f;
+        }
+
+        if (tvCount > 1)
+        {
+            score -= 0.2f;
+        }
+
+        if (tableCount > 0)
+        {
+            if (chairCount > 2)
+            {
+                score += 0.3f;
+            }
+        }
+
+        Debug.Log(score);
+
+        return score;
     }
 
     public void GenerateRoom()
