@@ -67,37 +67,42 @@ public class Room
         score = 1f;
         CountFurniture();
 
-        if (sofaCount > 1)
-        {
-            score -= 0.2f;          
-        }
+        //if (sofaCount > 1)
+        //{
+        //    score -= 0.2f;          
+        //}
 
-        if (tableCount > 1)
-        {
-            score -= 0.1f;
-        }
+        //if (tableCount > 1)
+        //{
+        //    score -= 0.1f;
+        //}
 
-        if (lampCount < 1)
-        {
-            score -= 0.1f;
-        }
+        //if (lampCount < 1)
+        //{
+        //    score -= 0.1f;
+        //}
 
-        if (lampCount > 3)
-        {
-            score -= 0.1f;
-        }
+        //if (lampCount > 3)
+        //{
+        //    score -= 0.1f;
+        //}
 
-        if (tvCount > 1)
+        //if (tvCount > 1)
+        //{
+        //    score -= 0.2f;
+        //}
+
+        //if (tableCount > 0)
+        //{
+        //    if (chairCount > 2)
+        //    {
+        //        score += 0.3f;
+        //    }
+        //}
+
+        for (int i = 0; i < sofaCount; i++)
         {
             score -= 0.2f;
-        }
-
-        if (tableCount > 0)
-        {
-            if (chairCount > 2)
-            {
-                score += 0.3f;
-            }
         }
 
         return score;
