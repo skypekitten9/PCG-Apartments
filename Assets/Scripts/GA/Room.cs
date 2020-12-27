@@ -100,8 +100,6 @@ public class Room
             }
         }
 
-        Debug.Log(score);
-
         return score;
     }
 
@@ -330,15 +328,18 @@ public class Room
     public Room CrossOver(Room parent) //EJ IMPLEMENTERAD KORREKT ÄN
     {
         Room child = new Room(width, height, gridSpawner);
-        for (int i = 0; i < furniture.Length; i++)
+        for (int i = 0; i < furniture.GetLength(0); i++)
         {
-            if (i < furniture.Length/2)
+            for (int j = 0; j < furniture.GetLength(1); j++)
             {
-                child.furniture[i, i] = furniture[i, i];
-            }
-            else
-            {
-                child.furniture[i, i] = parent.furniture[i, i];
+                if (i < furniture.Length / 2)
+                {
+                    child.furniture[i, j] = furniture[i, j];
+                }
+                else
+                {
+                    child.furniture[i, j] = parent.furniture[i, j];
+                }
             }
         }
         return child;

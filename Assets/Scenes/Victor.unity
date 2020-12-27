@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSpawner: {fileID: 843149425485885, guid: 7bc05b1d92a40ad458ecd4a5cdbb5ad8, type: 3}
-  populationSize: 1
-  generationsAmount: 1
+  populationSize: 30
+  generationsAmount: 30
   roomWidth: 20
   roomHeight: 20
 --- !u!4 &2114429098

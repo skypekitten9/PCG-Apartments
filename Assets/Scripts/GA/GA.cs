@@ -15,6 +15,7 @@ public class GA : MonoBehaviour
 
     private void Start()
     {
+        //Initialize
         generation = 1;
         fitness = 0;
         bestFitness = 0;
@@ -27,13 +28,19 @@ public class GA : MonoBehaviour
             population.Add(room);
             
         }
-        SpawnRooms();
-        CalculateFitness();
+
+        //GA
+        while(generation < generationsAmount)
+        {
+            NewGeneration();
+            Debug.Log("Best fitness: " + bestFitness);
+        }
+        SpawnRoom(bestRoom);
     }
 
-    private void SpawnRooms()
+    private void SpawnRoom(Room room)
     {
-        string toPrint = population[0].GetRoomString();
+        string toPrint = room.GetRoomString();
         filerw.WriteToFile(toPrint, "Assets/Texts/Rooms/test.txt");
         gridSpawner.GetComponent<spawnGrid>().ReadFile("Assets/Texts/Rooms/test.txt");
         StartCoroutine(gridSpawner.GetComponent<spawnGrid>().SpawnGrid());
@@ -66,7 +73,6 @@ public class GA : MonoBehaviour
         {
             population[i].CalculateFitness();
             fitnessSum += population[i].score;
-            Debug.Log(population[i].score);
 
             if (population[i].score > best.score)
             {
