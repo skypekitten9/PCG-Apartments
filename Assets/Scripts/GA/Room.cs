@@ -332,7 +332,8 @@ public class Room
         {
             for (int j = 0; j < furniture.GetLength(1); j++)
             {
-                if (i < furniture.Length / 2)
+                int random = UnityEngine.Random.Range(0, 10);
+                if (random > 5)
                 {
                     child.furniture[i, j] = furniture[i, j];
                 }
