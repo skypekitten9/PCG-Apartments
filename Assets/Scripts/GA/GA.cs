@@ -9,7 +9,7 @@ public class GA : MonoBehaviour
     Room bestRoom;
     public GameObject gridSpawner;
     int generation;
-    float fitness, bestFitness;
+    float populationFitness, bestRoomFitness;
 
     public int populationSize, generationsAmount, roomWidth, roomHeight;
 
@@ -17,23 +17,40 @@ public class GA : MonoBehaviour
     {
         //Initialize
         generation = 1;
-        fitness = 0;
-        bestFitness = 0;
+        populationFitness = 0;
+        bestRoomFitness = 0;
         population = new List<Room>();
         Instantiate(gridSpawner, gameObject.transform.position, gameObject.transform.rotation);
+
+        //Generate the first population
         for (int i = 0; i < populationSize; i++)
         {
             Room room = new Room(roomWidth, roomHeight, gridSpawner);
             room.GenerateRoom();
             population.Add(room);
-            
         }
 
+        //Calculate fitness
+        CalculateFitness();
+
+        //Sort population
+        SortPopulation();
+
         //GA
-        while(generation < generationsAmount)
+        while (generation < generationsAmount)
         {
-            NewGeneration();
-            Debug.Log("Best fitness: " + bestFitness);
+            //Generate new generation and merge
+            population.AddRange(NewGeneration());
+
+            //Calculate fitness
+            CalculateFitness();
+
+            //Sort rooms by fitness
+            SortPopulation();
+
+            //Create new population
+            int amountToRemove = population.Count - populationSize;
+            population.RemoveRange(populationSize - 1, amountToRemove);
         }
         SpawnRoom(bestRoom);
     }
@@ -47,11 +64,11 @@ public class GA : MonoBehaviour
 
     }
 
-    private void NewGeneration()
+    private List<Room> NewGeneration()
     {
-        if (population.Count <= 0) return;
+        if (population.Count <= 0) return null;
         CalculateFitness();
-        List<Room> newPopulation = new List<Room>();
+        List<Room> newGeneration = new List<Room>();
 
         for (int i = 0; i < population.Count; i++)
         {
@@ -59,10 +76,10 @@ public class GA : MonoBehaviour
             Room parentB = ChooseParent();
 
             Room child = parentA.CrossOver(parentB);
-            newPopulation.Add(child);
+            newGeneration.Add(child);
         }
-        population = newPopulation;
         generation++;
+        return newGeneration;
     }
 
     private void CalculateFitness()
@@ -72,16 +89,21 @@ public class GA : MonoBehaviour
         for (int i = 0; i < population.Count; i++)
         {
             population[i].CalculateFitness();
-            fitnessSum += population[i].score;
+            fitnessSum += population[i].fitness;
 
-            if (population[i].score > best.score)
+            if (population[i].fitness > best.fitness)
             {
 
             }
         }
-        fitness = fitnessSum;
-        bestFitness = best.score;
+        populationFitness = fitnessSum;
+        bestRoomFitness = best.fitness;
         bestRoom = best;
+    }
+
+    private void SortPopulation()
+    {
+
     }
 
     private Room ChooseParent()
@@ -89,11 +111,11 @@ public class GA : MonoBehaviour
         float randomNumber = UnityEngine.Random.Range(0, 1);
         for (int i = 0; i < population.Count; i++)
         {
-            if (randomNumber < population[i].score)
+            if (randomNumber < population[i].fitness)
             {
                 return population[i];
             }
-            randomNumber -= population[i].score;
+            randomNumber -= population[i].fitness;
         }
         return null;
     }

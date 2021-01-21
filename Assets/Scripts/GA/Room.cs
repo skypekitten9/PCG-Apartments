@@ -10,7 +10,7 @@ public class Room
     int width, height;
     GameObject gridSpawner;
     int sofaCount, lampCount, tableCount, tvCount, chairCount;
-    public float score;
+    public float fitness;
     public Room(int width, int height, GameObject gridSpawner)
     {
         furniture = new string[height , width];
@@ -64,43 +64,43 @@ public class Room
 
     public float CalculateFitness()
     {
-        score = 1f;
+        fitness = 1f;
         CountFurniture();
 
         if (sofaCount > 1)
         {
-            score -= 0.2f;          
+            fitness -= 0.2f;          
         }
 
         if (tableCount > 1)
         {
-            score -= 0.1f;
+            fitness -= 0.1f;
         }
 
         if (lampCount < 1)
         {
-            score -= 0.1f;
+            fitness -= 0.1f;
         }
 
         if (lampCount > 3)
         {
-            score -= 0.1f;
+            fitness -= 0.1f;
         }
 
         if (tvCount > 1)
         {
-            score -= 0.2f;
+            fitness -= 0.2f;
         }
 
         if (tableCount > 0)
         {
             if (chairCount > 2)
             {
-                score += 0.3f;
+                fitness += 0.3f;
             }
         }
 
-        return score;
+        return fitness;
     }
 
     public void GenerateRoom()
