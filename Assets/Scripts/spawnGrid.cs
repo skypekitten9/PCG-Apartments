@@ -16,6 +16,8 @@ public class spawnGrid : MonoBehaviour
     Direction[,] directionArray;
 
     int sizeX, sizeZ;
+    int originX = 0;
+    int originZ = 0;
     float spacing = 1;
 
     public enum Direction
@@ -32,6 +34,12 @@ public class spawnGrid : MonoBehaviour
     {
         //ReadFile("Assets/Texts/Rooms/test.txt");
         //StartCoroutine(SpawnGrid());
+    }
+
+    public void SetOrigin(int x, int z)
+    {
+        originX = x;
+        originZ = z;
     }
 
     public void ReadFile(string path)
@@ -73,7 +81,7 @@ public class spawnGrid : MonoBehaviour
         {
             for (int z = 0; z < sizeZ; z++)
             {
-                Vector3 pos = new Vector3(x * spacing, 0, z * spacing);
+                Vector3 pos = new Vector3(originX + x * spacing, 0, originZ + z * spacing);
                 if(generateTiles) SpawnTile(pos);
                 if (directionArray[x,z] != Direction.Empty && directionArray[x,z] != Direction.Ocupied) SpawnObj(pos, directionArray[x, z], indexArray[x, z]);
                 if(delay) yield return new WaitForSeconds(secondsToDelay);
