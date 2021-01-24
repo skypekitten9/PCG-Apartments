@@ -58,8 +58,8 @@ public class GA : MonoBehaviour
     private void SpawnRoom(Room room)
     {
         string toPrint = room.GetRoomString();
-        filerw.WriteToFile(toPrint, "Assets/Texts/Rooms/test.txt");
-        gridSpawner.GetComponent<spawnGrid>().ReadFile("Assets/Texts/Rooms/test.txt");
+        filerw.WriteToFile(toPrint, "room.txt");
+        gridSpawner.GetComponent<spawnGrid>().ReadFile("room.txt");
         StartCoroutine(gridSpawner.GetComponent<spawnGrid>().SpawnGrid());
 
     }

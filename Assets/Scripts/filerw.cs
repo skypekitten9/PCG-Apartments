@@ -8,20 +8,24 @@ public static class filerw
     static StreamReader reader;
     static StreamWriter writer;
     static string content;
-    public static string FileToString(string path)
+    static string path = "Assets/Texts/Rooms/";
+
+    public static string FileToString(string fileName)
     {
-        reader = new StreamReader(path);
+        fileName = path + fileName;
+        reader = new StreamReader(fileName);
         content = reader.ReadToEnd();
         reader.Close();
         return content;
     }
 
-    public static void WriteToFile(string toWrite, string path)
+    public static void WriteToFile(string toWrite, string fileName)
     {
-        if (!File.Exists(path))
+        fileName = path + fileName;
+        if (!File.Exists(fileName))
         {
             // Create a file to write to.
-            using (StreamWriter sw = File.CreateText(path))
+            using (StreamWriter sw = File.CreateText(fileName))
             {
                 sw.WriteLine(toWrite);
             }

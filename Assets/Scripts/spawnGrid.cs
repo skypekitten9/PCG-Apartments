@@ -36,15 +36,23 @@ public class spawnGrid : MonoBehaviour
         //StartCoroutine(SpawnGrid());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetSpawner();
+        }
+    }
+
     public void SetOrigin(int x, int z)
     {
         originX = x;
         originZ = z;
     }
 
-    public void ReadFile(string path)
+    public void ReadFile(string fileName)
     {
-        string content = filerw.FileToString(path);
+        string content = filerw.FileToString(fileName);
         Debug.Log(content);
 
         string[] rows = content.Split(';');
@@ -118,5 +126,17 @@ public class spawnGrid : MonoBehaviour
         tile.transform.position = spawnPosition;
         tile.transform.localScale = new Vector3(1, 0.2f, 1);
         tile.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        tile.gameObject.tag = "Tile";
+    }
+
+    public void ResetSpawner()
+    {
+        GameObject[] furnitures = GameObject.FindGameObjectsWithTag("Furniture");
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+        foreach (GameObject f in furnitures)
+            Destroy(f);
+
+        foreach (GameObject t in tiles)
+            Destroy(t);
     }
 }
