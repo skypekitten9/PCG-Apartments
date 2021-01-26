@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 2
   height: 1
+  set: TV Set
 --- !u!1001 &8098756877491839456
 PrefabInstance:
   m_ObjectHideFlags: 0

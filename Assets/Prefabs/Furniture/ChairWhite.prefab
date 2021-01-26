@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
+  set: Dinner Set
 --- !u!1001 &5226559481389147347
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,4 +5,5 @@ using UnityEngine;
 public class Furniture : MonoBehaviour
 {
     public int width, height;
+    public string set;
 }
