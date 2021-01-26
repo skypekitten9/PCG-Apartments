@@ -53,6 +53,14 @@ public class GA : MonoBehaviour
             population.RemoveRange(populationSize - 1, amountToRemove);
         }
         SpawnRoom(bestRoom);
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        UserInterface.Instance.SetGeneration(generation);
+        UserInterface.Instance.SetPopulation(population.Count);
+        UserInterface.Instance.SetFitness(bestRoomFitness);
     }
 
     private void SpawnRoom(Room room)

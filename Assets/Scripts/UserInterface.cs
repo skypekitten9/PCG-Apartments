@@ -7,11 +7,20 @@ public class UserInterface : MonoBehaviour
 {
     public GameObject generation, population, fitness;
     TextMeshProUGUI generationText, populationText, fitnessText;
-    void Start()
+    private static UserInterface instance = null;
+    public static UserInterface Instance { get { return instance; } }
+
+
+    public void Awake()
     {
         generationText = generation.GetComponent<TextMeshProUGUI>();
         populationText = population.GetComponent<TextMeshProUGUI>();
         fitnessText = fitness.GetComponent<TextMeshProUGUI>();
+
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+        else
+            instance = this;
     }
 
     public void SetGeneration(int generation)
@@ -26,6 +35,6 @@ public class UserInterface : MonoBehaviour
 
     public void SetFitness(float fitness)
     {
-        populationText.text = fitness.ToString();
+        fitnessText.text = fitness.ToString();
     }
 }
