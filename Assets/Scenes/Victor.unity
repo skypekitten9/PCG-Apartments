@@ -1295,6 +1295,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6937038140374877496, guid: bf1a51b2cfc99414880ecb3176ec3d08, type: 3}
+      propertyPath: generationStepSize
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6937038140374877497, guid: bf1a51b2cfc99414880ecb3176ec3d08, type: 3}
       propertyPath: m_Name
       value: GA

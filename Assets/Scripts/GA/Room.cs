@@ -8,6 +8,7 @@ public class Room
 {
     public string[,] furniture { get; private set; }
     int width, height;
+    static int testCount = 0;
     GameObject gridSpawner;
     int sofaCount, lampCount, tableCount, tvCount, chairCount;
     public float fitness;
@@ -100,7 +101,8 @@ public class Room
             }
         }
 
-        return fitness;
+        fitness = ++testCount;
+        return fitness; //debug
     }
 
     public void GenerateRoom()
