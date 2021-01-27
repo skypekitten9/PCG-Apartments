@@ -57,9 +57,7 @@ public class Room
             if (Int32.Parse(f.Substring(1)) == 6)
             {
                 chairCount++;
-            }
-
-           
+            }       
 
         }
 
@@ -103,7 +101,29 @@ public class Room
             }
         }
 
+        foreach (string f in furniture)
+        {
+            if (f.set == "Dinner Set")
+            {
+                if (f. of tv set)
+                {
+                    fitness -= 0.4f;
+                }
+
+                if (f in range of dinner set)
+                {
+                    fitness += 0.4f;
+                }
+            }
+        }
+
         return fitness;
+
+    }
+
+    public void CheckNeighbours(int range)
+    {
+        
     }
 
     public void GenerateRoom()
