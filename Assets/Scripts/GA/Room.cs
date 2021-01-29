@@ -20,90 +20,67 @@ public class Room
         this.gridSpawner = gridSpawner;
     }
 
-    public void CountFurniture()
+    public int CountFurniture(int furnitureIndex)
     {
-        foreach (string f in furniture)
+        int amount = 0;
+        for (int i = 0; i < height; i++)
         {
-
-            if (Int32.Parse(f.Substring(1)) == 0)
+            for (int j = 0; j < width; j++)
             {
-                tvCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 1)
-            {
-                tableCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 2)
-            {
-                tableCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 3)
-            {
-                sofaCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 4)
-            {
-                lampCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 5)
-            {
-                chairCount++;
-            }
-
-            if (Int32.Parse(f.Substring(1)) == 6)
-            {
-                chairCount++;
+                if(Int32.Parse(furniture[i, j].Substring(1)) == furnitureIndex)
+                {
+                    amount++;
+                }
             }
         }
-
+        return amount;
     }
 
     public float CalculateFitness()
     {
-        fitness = 1f;
-        CountFurniture();
+        fitness = 0f;
 
-        if (sofaCount > 1)
+        for (int i = 0; i < CountFurniture(3); i++)
         {
-            fitness -= 0.2f;          
+            fitness += 0.05f;
         }
+        //if (sofaCount > 1)
+        //{
+        //    fitness -= 0.2f;          
+        //}
 
-        if (tableCount > 1)
-        {
-            fitness -= 0.1f;
-        }
+        //if (tableCount > 1)
+        //{
+        //    fitness -= 0.1f;
+        //}
 
-        if (lampCount < 1)
-        {
-            fitness -= 0.1f;
-        }
+        //if (lampCount < 1)
+        //{
+        //    fitness -= 0.1f;
+        //}
 
-        if (lampCount > 3)
-        {
-            fitness -= 0.1f;
-        }
+        //if (lampCount > 3)
+        //{
+        //    fitness -= 0.1f;
+        //}
 
-        if (tvCount > 1)
-        {
-            fitness -= 0.2f;
-        }
+        //if (tvCount > 1)
+        //{
+        //    fitness -= 0.2f;
+        //}
 
-        if (tableCount > 0)
-        {
-            if (chairCount > 2)
-            {
-                fitness += 0.3f;
-            }
-        }
+        //if (tableCount > 0)
+        //{
+        //    if (chairCount > 2)
+        //    {
+        //        fitness += 0.3f;
+        //    }
+        //}
 
         return fitness; //debug
     }
 
+    #region CreatingRooms
     public void GenerateRoom()
     {
         for (int i = 0; i < height; i++)
@@ -139,7 +116,7 @@ public class Room
         FixCollisions();
     }
 
-    void FixCollisions()
+    public void FixCollisions()
     {
         for (int i = 0; i < height; i++)
         {
@@ -318,6 +295,8 @@ public class Room
 
 
     }
+
+    #endregion
 
     bool IsFurnitureMultipleTiles(int furnitureIndex)
     {
