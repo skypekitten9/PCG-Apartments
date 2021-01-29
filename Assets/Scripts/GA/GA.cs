@@ -127,13 +127,13 @@ public class GA : MonoBehaviour
             }
         }
         populationFitness = fitnessSum;
-        bestRoomFitness = best.fitness;
         bestRoom = best;
+        bestRoomFitness = best.fitness;
     }
 
     private List<Room> SortPopulation()
     {
-        List<Room> sortedPopulation = population.OrderBy(o => o.fitness).ToList();
+        List<Room> sortedPopulation = population.OrderByDescending(o => o.fitness).ToList();
         return sortedPopulation;
     }
 

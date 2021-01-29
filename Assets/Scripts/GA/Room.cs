@@ -101,7 +101,6 @@ public class Room
             }
         }
 
-        fitness = ++testCount;
         return fitness; //debug
     }
 
