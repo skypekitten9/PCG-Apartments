@@ -114,6 +114,7 @@ public class Room
             }
         }
         FixCollisions();
+        CalculateFitness();
     }
 
     public void FixCollisions()
@@ -305,25 +306,69 @@ public class Room
         return false;
     }
 
-    public Room CrossOver(Room parent) //EJ IMPLEMENTERAD KORREKT ÄN
+    public Room CrossOver(Room parent, int mutationRate, int populationSize)
     {
         Room child = new Room(width, height, gridSpawner);
         for (int i = 0; i < furniture.GetLength(0); i++)
         {
             for (int j = 0; j < furniture.GetLength(1); j++)
             {
-                int random = UnityEngine.Random.Range(0, 10);
-                if (random > 5)
+                //if (2 % (i + 2) == 0) child.furniture[i, j] = furniture[i, j];
+                //else child.furniture[i, j] = parent.furniture[i, j];
+
+                if (i <= (height / 3))
                 {
                     child.furniture[i, j] = furniture[i, j];
                 }
-                else
+                else if (i > (height / 3) && i < (height / 3) * 2)
                 {
                     child.furniture[i, j] = parent.furniture[i, j];
                 }
+                else
+                {
+                    child.furniture[i, j] = furniture[i, j];
+                }
             }
         }
+        child.Mutate(mutationRate, populationSize);
+        child.FixCollisions();
+        child.CalculateFitness();
         return child;
+    }
+
+    public void Mutate(int mutationRate, int populationSize)
+    {
+        if (mutationRate == 0) return;
+        int randomNumber = UnityEngine.Random.Range(0, populationSize - 1);
+        if(randomNumber <= mutationRate)
+        {
+            int i = UnityEngine.Random.Range(0, height - 1);
+            int j = UnityEngine.Random.Range(0, width - 1);
+            switch (UnityEngine.Random.Range(0, 6))
+            {
+                case 0:
+                    furniture[i, j] = "N";
+                    break;
+                case 1:
+                    furniture[i, j] = "E";
+                    break;
+                case 2:
+                    furniture[i, j] = "S";
+                    break;
+                case 3:
+                    furniture[i, j] = "W";
+                    break;
+                case 4:
+                    furniture[i, j] = "0";
+                    break;
+                case 5:
+                    furniture[i, j] = "X";
+                    break;
+                default:
+                    break;
+            }
+            furniture[i, j] += UnityEngine.Random.Range(0, gridSpawner.GetComponent<spawnGrid>().furnitureArray.Length);
+        }
     }
 
     public string GetRoomString()

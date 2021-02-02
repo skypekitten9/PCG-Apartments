@@ -12,7 +12,7 @@ public class GA : MonoBehaviour
     int generation, timesEvolved, generationMax, stepCount;
     float populationFitness, bestRoomFitness;
 
-    public int populationSize, generationStepSize, roomWidth, roomHeight;
+    public int populationSize, generationStepSize, roomWidth, roomHeight, mutationRate;
 
     private void Start()
     {
@@ -105,7 +105,7 @@ public class GA : MonoBehaviour
             Room parentA = ChooseParent();
             Room parentB = ChooseParent();
 
-            Room child = parentA.CrossOver(parentB);
+            Room child = parentA.CrossOver(parentB, mutationRate, populationSize);
             newGeneration.Add(child);
         }
         generation++;
