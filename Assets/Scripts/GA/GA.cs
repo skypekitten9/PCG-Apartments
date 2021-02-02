@@ -139,8 +139,12 @@ public class GA : MonoBehaviour
 
     private Room ChooseParent()
     {
-        int randomNumber = UnityEngine.Random.Range(0, population.Count - 1);
-        
-        return population[randomNumber];
+        int randomNumber1 = UnityEngine.Random.Range(0, population.Count - 1);
+        int randomNumber2 = UnityEngine.Random.Range(0, population.Count - 1);
+        int randomNumber3 = UnityEngine.Random.Range(0, population.Count - 1);
+        int bestParent = randomNumber1;
+        if (population[randomNumber2].fitness > population[bestParent].fitness) bestParent = randomNumber2;
+        if (population[randomNumber3].fitness > population[bestParent].fitness) bestParent = randomNumber2;
+        return population[bestParent];
     }
 }

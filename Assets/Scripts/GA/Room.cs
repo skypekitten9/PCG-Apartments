@@ -27,7 +27,7 @@ public class Room
         {
             for (int j = 0; j < width; j++)
             {
-                if(Int32.Parse(furniture[i, j].Substring(1)) == furnitureIndex)
+                if(Int32.Parse(furniture[i, j].Substring(1)) == furnitureIndex && furniture[i, j].Substring(0, 1) != "X"  && furniture[i, j].Substring(0, 1) != "0")
                 {
                     amount++;
                 }
