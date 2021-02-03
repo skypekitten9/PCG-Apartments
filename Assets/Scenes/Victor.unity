@@ -1301,7 +1301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6937038140374877496, guid: bf1a51b2cfc99414880ecb3176ec3d08, type: 3}
       propertyPath: populationSize
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6937038140374877496, guid: bf1a51b2cfc99414880ecb3176ec3d08, type: 3}
       propertyPath: mutationRate

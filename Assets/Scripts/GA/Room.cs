@@ -334,7 +334,7 @@ public class Room
             }
         }
         child.Mutate(mutationRate, populationSize);
-        child.FixCollisions();
+        //child.FixCollisions();
         child.CalculateFitness();
         return child;
     }
