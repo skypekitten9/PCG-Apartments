@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateTiles: 1
+  coloredTiles: 1
   delay: 1
   secondsToDelay: 0.01
   furnitureArray:

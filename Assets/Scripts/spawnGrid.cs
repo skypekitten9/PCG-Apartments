@@ -7,7 +7,7 @@ using UnityEngine;
 public class spawnGrid : MonoBehaviour
 {
     
-    public bool generateTiles;
+    public bool generateTiles, coloredTiles;
     public bool delay;
     public float secondsToDelay;
     public GameObject[] furnitureArray;
@@ -125,7 +125,7 @@ public class spawnGrid : MonoBehaviour
         GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tile.transform.position = spawnPosition;
         tile.transform.localScale = new Vector3(1, 0.2f, 1);
-        tile.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        if(coloredTiles) tile.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         tile.gameObject.tag = "Tile";
     }
 
