@@ -316,11 +316,11 @@ public class Room
                 //if (2 % (i + 2) == 0) child.furniture[i, j] = furniture[i, j];
                 //else child.furniture[i, j] = parent.furniture[i, j];
 
-                if (i <= (height / 3))
+                if (i < (height / 3))
                 {
                     child.furniture[i, j] = furniture[i, j];
                 }
-                else if (i > (height / 3) && i < (height / 3) * 2)
+                else if (i >= (height / 3) && i < (height / 3) * 2)
                 {
                     child.furniture[i, j] = parent.furniture[i, j];
                 }

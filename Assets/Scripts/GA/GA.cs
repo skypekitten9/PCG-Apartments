@@ -144,7 +144,7 @@ public class GA : MonoBehaviour
         int randomNumber3 = UnityEngine.Random.Range(0, population.Count - 1);
         int bestParent = randomNumber1;
         if (population[randomNumber2].fitness > population[bestParent].fitness) bestParent = randomNumber2;
-        if (population[randomNumber3].fitness > population[bestParent].fitness) bestParent = randomNumber2;
+        if (population[randomNumber3].fitness > population[bestParent].fitness) bestParent = randomNumber3;
         return population[bestParent];
     }
 }
