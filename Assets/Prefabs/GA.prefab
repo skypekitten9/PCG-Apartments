@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSpawner: {fileID: 843149425485885, guid: 7bc05b1d92a40ad458ecd4a5cdbb5ad8, type: 3}
   populationSize: 30
-  generationsAmount: 30
+  generationStepSize: 15
   roomWidth: 10
   roomHeight: 10
+  mutationRate: 10
