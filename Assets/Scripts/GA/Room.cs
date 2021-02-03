@@ -126,6 +126,16 @@ public class Room
         {
             for (int j = 0; j < width; j++)
             {
+                if (furniture[i, j].Substring(0, 1) == "X")
+                {
+                    furniture[i, j] = "00";
+                }
+            }
+        }
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
                 if (furniture[i, j].Substring(0, 1) != "X" && furniture[i, j].Substring(0, 1) != "0")
                 {
                     if (IsFurnitureMultipleTiles(Int32.Parse(furniture[i, j].Substring(1,1)))) SolveCollision(i, j, Int32.Parse(furniture[i, j].Substring(1, 1)));
@@ -246,58 +256,6 @@ public class Room
                 }
             }
         }
-
-        //else if (furniture[i, j].Substring(0, 1) == "E")
-        //{
-        //    if (i + furnitureWidth > height || j + furnitureHeight > width)
-        //    {
-        //        furniture[i, j] = "00";
-        //        return;
-        //    }
-
-        //    for (int m = 0; m < furnitureWidth; m++)
-        //    {
-        //        for (int n = 0; n < furnitureHeight; n++)
-        //        {
-        //            furniture[i + m, j + n] = "00";
-        //        }
-        //    }
-        //}
-        //else if (furniture[i, j].Substring(0, 1) == "S")
-        //{
-        //    if (i - furnitureHeight < 0 || j - furnitureWidth < 0)
-        //    {
-        //        furniture[i, j] = "00";
-        //        return;
-        //    }
-
-        //    for (int m = 0; m < furnitureHeight; m++)
-        //    {
-        //        for (int n = 0; n < furnitureWidth; n++)
-        //        {
-        //            furniture[i - m, j - n] = "00";
-        //        }
-        //    }
-        //}
-        //else if (furniture[i, j].Substring(0, 1) == "W")
-        //{
-        //    if (i - furnitureWidth < 0 || j - furnitureHeight < 0)
-        //    {
-        //        furniture[i, j] = "00";
-        //        return;
-        //    }
-
-        //    for (int m = 0; m < furnitureWidth; m++)
-        //    {
-        //        for (int n = 0; n < furnitureHeight; n++)
-        //        {
-        //            furniture[i - m, j - n] = "00";
-        //        }
-        //    }
-        //}
-        //else return;
-
-
     }
 
     #endregion
@@ -334,7 +292,7 @@ public class Room
             }
         }
         child.Mutate(mutationRate, populationSize);
-        //child.FixCollisions();
+        child.FixCollisions();
         child.CalculateFitness();
         return child;
     }
