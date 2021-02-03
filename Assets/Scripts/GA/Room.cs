@@ -8,12 +8,15 @@ public class Room
 {
     public string[,] furniture { get; private set; }
     int width, height;
-    static int testCount = 0;
+    static int roomCount;
+    int ID;
     GameObject gridSpawner;
     int sofaCount, lampCount, tableCount, tvCount, chairCount;
     public float fitness;
     public Room(int width, int height, GameObject gridSpawner)
     {
+        ID = roomCount;
+        roomCount++;
         furniture = new string[height , width];
         this.width = width;
         this.height = height;

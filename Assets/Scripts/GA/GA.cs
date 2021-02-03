@@ -70,7 +70,7 @@ public class GA : MonoBehaviour
 
             //Create new population
             int amountToRemove = population.Count - populationSize;
-            population.RemoveRange(populationSize - 1, amountToRemove);
+            population.RemoveRange(populationSize, amountToRemove);
         }
         SpawnRoom(bestRoom);
         UpdateUI();
