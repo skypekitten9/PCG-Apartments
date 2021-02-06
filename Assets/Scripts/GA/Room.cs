@@ -41,60 +41,111 @@ public class Room
 
     public float CalculateFitness()
     {
-        fitness = 0f;
+        fitness = 1.0f;
 
         for (int i = 0; i < CountFurniture(3); i++)
         {
-            fitness += 0.05f;
+            sofaCount++;
         }
-        //if (sofaCount > 1)
-        //{
-        //    fitness -= 0.2f;
-        //}
 
-        //if (tableCount > 1)
-        //{
-        //    fitness -= 0.1f;
-        //}
-
-        //if (lampCount < 1)
-        //{
-        //    fitness -= 0.1f;
-        //}
-
-        //if (lampCount > 3)
-        //{
-        //    fitness -= 0.1f;
-        //}
-
-        //if (tvCount > 1)
-        //{
-        //    fitness -= 0.2f;
-        //}
-
-        //if (tableCount > 0)
-        //{
-        //    if (chairCount > 2)
-        //    {
-        //        fitness += 0.3f;
-        //    }
-        //}
-
-        foreach (string f in furniture)
+        for (int i = 0; i < CountFurniture(0); i++)
         {
-            if (f.set == "Dinner Set")
-            {
-                if (f. of tv set)
-                {
-                    fitness -= 0.4f;
-                }
+            tvCount++;
+        }
 
-                if (f in range of dinner set)
-                {
-                    fitness += 0.4f;
-                }
+        for (int i = 0; i < CountFurniture(2); i++)
+        {
+            tableCount++;
+        }
+
+        for (int i = 0; i < CountFurniture(1); i++)
+        {
+            tableCount++;
+        }
+
+        for (int i = 0; i < CountFurniture(4); i++)
+        {
+            lampCount++;
+        }
+
+        for (int i = 0; i < CountFurniture(5); i++)
+        {
+            chairCount++;
+        }
+
+        for (int i = 0; i < CountFurniture(6); i++)
+        {
+            chairCount++;
+        }
+
+        if (sofaCount > 1)
+        {
+            fitness -= 0.2f;
+        }
+
+        if (sofaCount < 1)
+        {
+            fitness -= 0.2f;
+        }
+
+        if (sofaCount == 1)
+        {
+            fitness += 0.3f;
+        }
+
+        if (tableCount > 2)
+        {
+            fitness -= 0.1f;
+        }
+
+        if (tableCount < 1)
+        {
+            fitness -= 0.2f;
+        }
+
+        if (lampCount < 1)
+        {
+            fitness -= 0.1f;
+        }
+
+        if (lampCount > 3)
+        {
+            fitness -= 0.1f;
+        }
+
+        if (tvCount > 1)
+        {
+            fitness -= 0.2f;
+        }
+
+        if (tvCount == 1)
+        {
+            fitness += 0.3f;
+        }
+
+        if (tableCount > 0)
+        {
+            if (chairCount > 2)
+            {
+                fitness += 0.3f;
             }
         }
+
+        //foreach (string f in furniture)
+        //{
+        //    if (f.set == "Dinner Set")
+        //    {
+        //        if (f. of tv set)
+        //        {
+        //            fitness -= 0.4f;
+        //        }
+
+        //        if (f in range of dinner set)
+        //        {
+        //            fitness += 0.4f;
+        //        }
+        //    }
+        //}
 
         return fitness;
 
