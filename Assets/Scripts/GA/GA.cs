@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GA : MonoBehaviour
@@ -8,15 +9,18 @@ public class GA : MonoBehaviour
     List<Room> population;
     Room bestRoom;
     public GameObject gridSpawner;
-    int generation;
+    int generation, timesEvolved, generationMax, stepCount;
     float populationFitness, bestRoomFitness;
 
-    public int populationSize, generationsAmount, roomWidth, roomHeight;
+    public int populationSize, generationStepSize, roomWidth, roomHeight, mutationRate;
 
     private void Start()
     {
         //Initialize
-        generation = 1;
+        generation = 0;
+        stepCount = 0;
+        timesEvolved = 0;
+        generationMax = generationStepSize;
         populationFitness = 0;
         bestRoomFitness = 0;
         population = new List<Room>();
@@ -34,10 +38,26 @@ public class GA : MonoBehaviour
         CalculateFitness();
 
         //Sort population
-        SortPopulation();
+        population = SortPopulation();
 
+        //Evolve
+        Evolve();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            stepCount++;
+            generationMax += generationStepSize;
+            Evolve();
+        }
+    }
+
+    private void Evolve()
+    {
         //GA
-        while (generation < generationsAmount)
+        while (generation < generationMax)
         {
             //Generate new generation and merge
             population.AddRange(NewGeneration());
@@ -46,11 +66,11 @@ public class GA : MonoBehaviour
             CalculateFitness();
 
             //Sort rooms by fitness
-            SortPopulation();
+            population = SortPopulation();
 
             //Create new population
             int amountToRemove = population.Count - populationSize;
-            population.RemoveRange(populationSize - 1, amountToRemove);
+            population.RemoveRange(populationSize, amountToRemove);
         }
         SpawnRoom(bestRoom);
         UpdateUI();
@@ -65,9 +85,11 @@ public class GA : MonoBehaviour
 
     private void SpawnRoom(Room room)
     {
+        gridSpawner.GetComponent<spawnGrid>().ResetSpawner();
         string toPrint = room.GetRoomString();
-        filerw.WriteToFile(toPrint, "room.txt");
-        gridSpawner.GetComponent<spawnGrid>().ReadFile("room.txt");
+        string fileName = "room" + stepCount.ToString() + ".txt";
+        filerw.WriteToFile(toPrint, fileName);
+        gridSpawner.GetComponent<spawnGrid>().ReadFile(fileName);
         StartCoroutine(gridSpawner.GetComponent<spawnGrid>().SpawnGrid());
 
     }
@@ -83,7 +105,7 @@ public class GA : MonoBehaviour
             Room parentA = ChooseParent();
             Room parentB = ChooseParent();
 
-            Room child = parentA.CrossOver(parentB);
+            Room child = parentA.CrossOver(parentB, mutationRate, populationSize);
             newGeneration.Add(child);
         }
         generation++;
@@ -101,30 +123,30 @@ public class GA : MonoBehaviour
 
             if (population[i].fitness > best.fitness)
             {
-
+                best = population[i];
             }
         }
         populationFitness = fitnessSum;
-        bestRoomFitness = best.fitness;
         bestRoom = best;
+        bestRoomFitness = best.fitness;
     }
 
-    private void SortPopulation()
+    private List<Room> SortPopulation()
     {
-
+        List<Room> sortedPopulation = population.OrderByDescending(o => o.fitness).ToList();
+        return sortedPopulation;
     }
 
     private Room ChooseParent()
     {
-        float randomNumber = UnityEngine.Random.Range(0, 1);
-        for (int i = 0; i < population.Count; i++)
-        {
-            if (randomNumber < population[i].fitness)
-            {
-                return population[i];
-            }
-            randomNumber -= population[i].fitness;
-        }
-        return null;
+        //int randomNumber = UnityEngine.Random.Range(0, population.Count/3);
+        //return population[randomNumber];
+        int randomNumber1 = UnityEngine.Random.Range(0, population.Count - 1);
+        int randomNumber2 = UnityEngine.Random.Range(0, population.Count - 1);
+        int randomNumber3 = UnityEngine.Random.Range(0, population.Count - 1);
+        int bestParent = randomNumber1;
+        if (population[randomNumber2].fitness > population[bestParent].fitness) bestParent = randomNumber2;
+        if (population[randomNumber3].fitness > population[bestParent].fitness) bestParent = randomNumber3;
+        return population[bestParent];
     }
 }
