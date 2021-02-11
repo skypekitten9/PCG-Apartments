@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
+  familyType: 2
 --- !u!1001 &7109176422707210590
 PrefabInstance:
   m_ObjectHideFlags: 0

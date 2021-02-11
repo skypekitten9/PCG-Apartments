@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
+  familyType: 2
 --- !u!1 &3481280333219089596
 GameObject:
   m_ObjectHideFlags: 0

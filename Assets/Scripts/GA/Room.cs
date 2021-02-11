@@ -39,14 +39,55 @@ public class Room
         return amount;
     }
 
+    public float EvaluateNeighboursAround(int i, int j, int range, float scoreChange)
+    {
+        if (furniture[i, j].Substring(0, 1) == "X" || furniture[i, j].Substring(0, 1) == "0") return 0;
+
+        float result = 0;
+        FamilyType familyType = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().familyType;
+        int startX = i - range;
+        int startY = j - range;
+        if (startX < 0) startX = 0;
+        if (startY < 0) startY = 0;
+
+        for (int x = startX; x <= i + range; x++)
+        {
+            if (x >= height) break;
+            for (int z = startY; z <= j + range; z++)
+            {
+                if (z >= width) break;
+                result += EvaluateNeighbour(x, z, familyType, scoreChange);
+            }
+        }
+
+        return result;
+    }
+
+    //Returns the change in score from a neighbour with index i, j with concideration on a FamilyType
+    public float EvaluateNeighbour(int i, int j, FamilyType type, float scoreChange)
+    {
+        if (furniture[i, j].Substring(0, 1) == "X" || furniture[i, j].Substring(0, 1) == "0") return 0;
+
+        FamilyType familyType = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().familyType;
+        if (familyType == type) return scoreChange;
+        else if (familyType == FamilyType.None) return 0;
+        else return (scoreChange * -1);
+    }
+
     public float CalculateFitness()
     {
         fitness = 0f;
-
-        for (int i = 0; i < CountFurniture(3); i++)
+        for (int i = 0; i < height; i++)
         {
-            fitness += 0.05f;
+            for (int j = 0; j < width; j++)
+            {
+                fitness +=EvaluateNeighboursAround(i, j, 1, 0.1f);
+            }
         }
+        //for (int i = 0; i < CountFurniture(3); i++)
+        //{
+        //    fitness += 0.05f;
+        //}
         //if (sofaCount > 1)
         //{
         //    fitness -= 0.2f;          
