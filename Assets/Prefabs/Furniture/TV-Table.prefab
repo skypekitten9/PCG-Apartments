@@ -61,6 +61,7 @@ MonoBehaviour:
   width: 2
   height: 1
   familyType: 1
+  furnitureType: 2
 --- !u!1001 &3861777932592690535
 PrefabInstance:
   m_ObjectHideFlags: 0
