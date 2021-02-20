@@ -48,6 +48,8 @@ MonoBehaviour:
   height: 1
   familyType: 2
   furnitureType: 5
+  likes: 5
+  prefferedDistance: 0
 --- !u!1 &3481280333219089596
 GameObject:
   m_ObjectHideFlags: 0

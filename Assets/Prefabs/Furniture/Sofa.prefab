@@ -62,6 +62,8 @@ MonoBehaviour:
   height: 1
   familyType: 1
   furnitureType: 4
+  likes: 2
+  prefferedDistance: 0
 --- !u!1001 &8098756877491839456
 PrefabInstance:
   m_ObjectHideFlags: 0

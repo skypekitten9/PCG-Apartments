@@ -60,6 +60,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   height: 1
+  familyType: 2
+  furnitureType: 0
+  likes: 1
+  prefferedDistance: 1
 --- !u!1001 &5941362085073685134
 PrefabInstance:
   m_ObjectHideFlags: 0
