@@ -39,8 +39,60 @@ public class Room
         return amount;
     }
 
-    public float EvaluateNeighboursAround(int i, int j, int range, float scoreChange)
+    private float EvaluateFamily(int i, int j)
     {
+        if (furniture[i, j].Substring(0, 1) == "X" || furniture[i, j].Substring(0, 1) == "0") return 0;
+        FamilyType familyType = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().familyType;
+        switch (familyType)
+        {
+            case FamilyType.Surrounding:
+                //return SurroundingFamily(i, j, 1, 1);
+                return 0;
+            case FamilyType.Directional:
+                return DirectionalFamily(i, j, familyType);
+            default:
+                return 0f;
+        }
+    }
+
+    private float DirectionalFamily(int i, int j, FamilyType familyType)
+    {
+        float result = 0f;
+        string direction = furniture[i, j].Substring(0, 1);
+        int width = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().width;
+        FurnitureType likes = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().likes;
+
+        if (direction == "N")
+        {
+            for (int m = 0; m < width; m++)
+            {
+                for (int n = i - 1; n >= 0; n--)
+                {
+                    if (IsFurnitureType(n, j + m, likes))
+                    {
+                        result += 1;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private bool IsFurnitureType(int i, int j, FurnitureType furnitureType)
+    {
+        if (i >= height || i < 0) return false;
+        if (j >= width || j < 0) return false;
+        if (furniture[i, j].Substring(0, 1) == "0") return false;
+
+        if (gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().furnitureType == furnitureType)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    private float SurroundingFamily(int i, int j, int range, float scoreChange)
+    {       
         if (furniture[i, j].Substring(0, 1) == "X" || furniture[i, j].Substring(0, 1) == "0") return 0;
 
         float result = 0;
@@ -81,7 +133,7 @@ public class Room
         {
             for (int j = 0; j < width; j++)
             {
-                fitness +=EvaluateNeighboursAround(i, j, 1, 0.1f);
+                fitness += EvaluateFamily(i, j);
             }
         }
         //for (int i = 0; i < CountFurniture(3); i++)

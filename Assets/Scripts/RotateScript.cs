@@ -16,7 +16,7 @@ public class RotateScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
             transform.Rotate(-Vector3.up * speed * Time.deltaTime);
 
-        else if(Input.GetKey(KeyCode.R))
+        else if(Input.GetKeyDown(KeyCode.R))
         {
             autoRotate = !autoRotate;
         }

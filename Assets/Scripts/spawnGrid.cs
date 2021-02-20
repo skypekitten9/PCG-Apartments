@@ -36,14 +36,6 @@ public class spawnGrid : MonoBehaviour
         //StartCoroutine(SpawnGrid());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetSpawner();
-        }
-    }
-
     public void SetOrigin(int x, int z)
     {
         originX = x;
