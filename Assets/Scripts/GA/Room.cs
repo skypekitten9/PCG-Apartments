@@ -59,23 +59,73 @@ public class Room
     {
         float result = 0f;
         string direction = furniture[i, j].Substring(0, 1);
-        int width = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().width;
+        int furnitureWidth = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().width;
+        int prefferedDistance = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().prefferedDistance;
         FurnitureType likes = gridSpawner.GetComponent<spawnGrid>().furnitureArray[Int32.Parse(furniture[i, j].Substring(1, 1))].GetComponent<Furniture>().likes;
 
+        //North
         if (direction == "N")
         {
-            for (int m = 0; m < width; m++)
+            for (int m = 0; m < furnitureWidth; m++)
             {
                 for (int n = i - 1; n >= 0; n--)
                 {
                     if (IsFurnitureType(n, j + m, likes))
                     {
-                        result += 1;
+                        if (Mathf.Abs(n - i) == prefferedDistance) result += 1;
+                        break;
                     }
                 }
             }
         }
+        //East
+        else if (direction == "E")
+        {
+            for (int m = 0; m < furnitureWidth; m++)
+            {
+                for (int n = j + 1; n < width; n++)
+                {
+                    if (IsFurnitureType(i + m, n, likes))
+                    {
+                        if (Mathf.Abs(n - j) == prefferedDistance) result += 1;
+                        break;
+                    }
+                }
+            }
+        }
+        //South
+        else if (direction == "S")
+        {
+            for (int m = 0; m < furnitureWidth; m++)
+            {
+                for (int n = i + 1; n < height; n++)
+                {
+                    if (IsFurnitureType(n, j + m, likes))
+                    {
+                        if (Mathf.Abs(n - i) == prefferedDistance) result += 1;
+                        break;
+                    }
+                }
+            }
+        }
+        //West
+        else if (direction == "W")
+        {
+            for (int m = 0; m < furnitureWidth; m++)
+            {
+                for (int n = j - 1; n >= 0; n--)
+                {
+                    if (IsFurnitureType(i - m, n, likes))
+                    {
+                        if (Mathf.Abs(n - j) == prefferedDistance) result += 1;
+                        break;
+                    }
+                }
+            }
+        }
+        else result -= 0.5f;
         return result;
+
     }
 
     private bool IsFurnitureType(int i, int j, FurnitureType furnitureType)
